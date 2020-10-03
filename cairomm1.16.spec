@@ -4,29 +4,29 @@
 
 Summary:	C++ wrapper for cairo
 Summary(pl.UTF-8):	Interfejs C++ do cairo
-Name:		cairomm
-Version:	1.14.2
+Name:		cairomm1.16
+Version:	1.16.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://www.cairographics.org/releases/%{name}-%{version}.tar.xz
-# Source0-md5:	fbcaad2d3756b42592fe8c92b39945f5
+Source0:	https://www.cairographics.org/releases/cairomm-%{version}.tar.xz
+# Source0-md5:	7b5c3d7ca5578f0de7d05aef756f97f1
 URL:		https://www.cairographics.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	cairo-devel >= 1.12.0
 BuildRequires:	doxygen >= 1:1.8.9
 BuildRequires:	graphviz
-BuildRequires:	libsigc++-devel >= 1:2.6.0
-BuildRequires:	libstdc++-devel >= 6:4.6
+BuildRequires:	libsigc++3-devel >= 1:3.0.0
+BuildRequires:	libstdc++-devel >= 6:7
 BuildRequires:	libtool >= 2:1.5
-BuildRequires:	mm-common >= 0.8
+BuildRequires:	mm-common >= 0.9.12
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires:	cairo >= 1.12.0
-Requires:	libsigc++ >= 1:2.6.0
+Requires:	libsigc++3 >= 1:3.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -41,8 +41,8 @@ Summary(pl.UTF-8):	Pliki programistyczne biblioteki cairomm
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	cairo-devel >= 1.12.0
-Requires:	libsigc++-devel >= 1:2.6.0
-Requires:	libstdc++-devel >= 6:4.6
+Requires:	libsigc++3-devel >= 1:3.0.0
+Requires:	libstdc++-devel >= 6:7
 
 %description devel
 Development files for cairomm library.
@@ -75,7 +75,7 @@ API and internal documentation for cairomm library.
 Dokumentacja API biblioteki cairomm.
 
 %prep
-%setup -q
+%setup -q -n cairomm-%{version}
 
 %build
 mm-common-prepare --copy --force
@@ -95,7 +95,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libcairomm-1.0.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libcairomm-1.16.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -106,30 +106,30 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog MAINTAINERS NEWS README
-%attr(755,root,root) %{_libdir}/libcairomm-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libcairomm-1.0.so.1
+%attr(755,root,root) %{_libdir}/libcairomm-1.16.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libcairomm-1.16.so.1
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libcairomm-1.0.so
-%{_libdir}/cairomm-1.0
-%{_includedir}/cairomm-1.0
-%{_pkgconfigdir}/cairomm-1.0.pc
-%{_pkgconfigdir}/cairomm-ft-1.0.pc
-%{_pkgconfigdir}/cairomm-pdf-1.0.pc
-%{_pkgconfigdir}/cairomm-png-1.0.pc
-%{_pkgconfigdir}/cairomm-ps-1.0.pc
-%{_pkgconfigdir}/cairomm-svg-1.0.pc
-%{_pkgconfigdir}/cairomm-xlib-1.0.pc
-%{_pkgconfigdir}/cairomm-xlib-xrender-1.0.pc
+%attr(755,root,root) %{_libdir}/libcairomm-1.16.so
+%{_libdir}/cairomm-1.16
+%{_includedir}/cairomm-1.16
+%{_pkgconfigdir}/cairomm-1.16.pc
+%{_pkgconfigdir}/cairomm-ft-1.16.pc
+%{_pkgconfigdir}/cairomm-pdf-1.16.pc
+%{_pkgconfigdir}/cairomm-png-1.16.pc
+%{_pkgconfigdir}/cairomm-ps-1.16.pc
+%{_pkgconfigdir}/cairomm-svg-1.16.pc
+%{_pkgconfigdir}/cairomm-xlib-1.16.pc
+%{_pkgconfigdir}/cairomm-xlib-xrender-1.16.pc
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libcairomm-1.0.a
+%{_libdir}/libcairomm-1.16.a
 %endif
 
 %files apidocs
 %defattr(644,root,root,755)
-%{_docdir}/cairomm-1.0
-%{_datadir}/devhelp/books/cairomm-1.0
+%{_docdir}/cairomm-1.16
+%{_datadir}/devhelp/books/cairomm-1.16
