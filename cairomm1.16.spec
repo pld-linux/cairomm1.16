@@ -1,5 +1,6 @@
 #
 # Conditional build:
+%bcond_without	apidocs		# API documentation
 %bcond_without	static_libs	# static library
 
 Summary:	C++ wrapper for cairo
@@ -15,12 +16,12 @@ URL:		https://www.cairographics.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	cairo-devel >= 1.14.0
-BuildRequires:	doxygen >= 1:1.8.9
-BuildRequires:	graphviz
+%{?with_apidocs:BuildRequires:	doxygen >= 1:1.8.9}
+%{?with_apidocs:BuildRequires:	graphviz}
 BuildRequires:	libsigc++3-devel >= 1:3.0.0
 BuildRequires:	libstdc++-devel >= 6:7
 BuildRequires:	libtool >= 2:1.5
-BuildRequires:	libxslt-progs
+%{?with_apidocs:BuildRequires:	libxslt-progs}
 BuildRequires:	mm-common >= 0.9.12
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
@@ -88,7 +89,8 @@ mm-common-prepare --copy --force
 %{__automake}
 %configure \
 	--disable-silent-rules \
-	%{?with_static_libs:--enable-static}
+	%{?with_static_libs:--enable-static} \
+	%{__enable_disable apidocs documentation}
 %{__make}
 
 %install
@@ -131,7 +133,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libcairomm-1.16.a
 %endif
 
+%if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
 %{_docdir}/cairomm-1.16
 %{_datadir}/devhelp/books/cairomm-1.16
+%endif
