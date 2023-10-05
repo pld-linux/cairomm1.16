@@ -20,6 +20,7 @@ BuildRequires:	graphviz
 BuildRequires:	libsigc++3-devel >= 1:3.0.0
 BuildRequires:	libstdc++-devel >= 6:7
 BuildRequires:	libtool >= 2:1.5
+BuildRequires:	libxslt-progs
 BuildRequires:	mm-common >= 0.9.12
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-build >= 4.6
