@@ -5,16 +5,16 @@
 Summary:	C++ wrapper for cairo
 Summary(pl.UTF-8):	Interfejs C++ do cairo
 Name:		cairomm1.16
-Version:	1.16.2
+Version:	1.18.0
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://www.cairographics.org/releases/cairomm-%{version}.tar.xz
-# Source0-md5:	7129c8c498c73623a13846f1d16bb794
+# Source0-md5:	4c7afc4ab5177655724ea4b31794db30
 URL:		https://www.cairographics.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.11
-BuildRequires:	cairo-devel >= 1.12.0
+BuildRequires:	cairo-devel >= 1.14.0
 BuildRequires:	doxygen >= 1:1.8.9
 BuildRequires:	graphviz
 BuildRequires:	libsigc++3-devel >= 1:3.0.0
@@ -26,7 +26,7 @@ BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
-Requires:	cairo >= 1.12.0
+Requires:	cairo >= 1.14.0
 Requires:	libsigc++3 >= 1:3.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -41,7 +41,7 @@ Summary:	Development files for cairomm library
 Summary(pl.UTF-8):	Pliki programistyczne biblioteki cairomm
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	cairo-devel >= 1.12.0
+Requires:	cairo-devel >= 1.14.0
 Requires:	libsigc++3-devel >= 1:3.0.0
 Requires:	libstdc++-devel >= 6:7
 
@@ -106,7 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog MAINTAINERS NEWS README
+%doc ChangeLog NEWS README.md
 %attr(755,root,root) %{_libdir}/libcairomm-1.16.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libcairomm-1.16.so.1
 
